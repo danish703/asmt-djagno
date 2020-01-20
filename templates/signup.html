@@ -1,0 +1,27 @@
+{% extends 'master/layout.html' %}
+{% block 'title' %} Signup {% endblock %}
+
+{% block 'body' %}
+ <div class="container">
+     <div class="row">
+         <div class="col-md-4 col-md-offset-4">
+     <form method="post">
+         <div class="form-group">
+             <label for="">Username</label>
+             <input type="text" name="username" class="form-control">
+         </div>
+           <div class="form-group">
+             <label for="">Password</label>
+             <input type="password" name="pass1" class="form-control">
+         </div>
+           <div class="form-group">
+             <label for="">Password Confirmation</label>
+             <input type="password" name="pass2" class="form-control">
+         </div>
+         {% csrf_token %}
+         <button type="submit" class="btn btn-primary">Save</button>
+     </form>
+     </div>
+ </div>
+ </div>
+{% endblock %}

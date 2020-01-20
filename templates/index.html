@@ -1,0 +1,61 @@
+{% extends 'master/layout.html' %}
+{% block 'title' %}Home page {% endblock %}
+
+{% block 'body' %}
+ <!-- Page Heading -->
+			<section class="page-heading">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1>Blog Full Width</h1>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- Page Heading / End -->
+
+			<!-- Page Content -->
+			<div class="page-content">
+				<div class="container">
+
+					<div class="row">
+						<div class="content col-md-12">
+ 							{% for b in blog %}
+							<!-- Post (Standard Format) -->
+							<article class="entry entry__standard entry__with-icon">
+								<header class="entry-header">
+									<div class="entry-author visible-md visible-lg">
+										<img src="images/samples/post-author1.jpg" alt="">
+										<span class="author-name">Dan Fisher</span>
+									</div>
+									<h3><a href="blog-post.html">{{b.title}}</a></h3>
+									<div class="entry-meta">
+										<span class="entry-date"><i class="fa fa-calendar"></i> <a href="#">May 24, 2015</a></span>
+										<span class="entry-category"><i class="fa fa-folder"></i> <a href="#">Painting</a></span>
+										<span class="entry-comments"><i class="fa fa-comments"></i> <a href="#">0 Comments</a></span>
+									</div>
+								</header>
+								<div class="entry-thumb-wrapper">
+									<figure class="alignnone entry-thumb">
+										<a href="#"><img src="{{MEDIA_URL}}{{b.image.url}}" alt=""></a>
+									</figure>
+								</div>
+								<div class="excerpt">
+									{{b.body|truncatewords:3}}
+								</div>
+								<footer class="entry-footer">
+									<a href="#" class="btn btn-primary">Continue Reading</a>
+								</footer>
+							</article>
+							<!-- Post (Standard Format) / End -->
+							{% endfor %}
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+			<!-- Page Content / End -->
+
+{% endblock %}

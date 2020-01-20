@@ -1,0 +1,19 @@
+{% extends 'master/layout.html' %}
+{% block 'body' %}
+  <div class="container">
+       <div class="row">
+           {% include 'component/sidenav.html' %}
+            <div class="col-md-8">
+                <h3>Create News</h3>
+                <form method="post" enctype="multipart/form-data">
+                    {{form}}
+                    <hr/>
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+       </div>
+  </div>
+{% endblock %}
+
+{% block 'title' %} Create News {% endblock %}
