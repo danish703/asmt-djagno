@@ -2,7 +2,12 @@ from django.shortcuts import render,redirect
 from blog.models import Blog
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
+
+def signout(request):
+    logout(request)
+    return redirect('login')
+
 def home(request):
     data = Blog.objects.all() # SELECT * FROM `blog`
     context = {
