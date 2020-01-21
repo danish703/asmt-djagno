@@ -1,0 +1,19 @@
+{% extends 'master/layout.html' %}
+{% block 'body' %}
+  <div class="container">
+       <div class="row">
+           {% include 'component/sidenav.html' %}
+            <div class="col-md-8">
+                {% for n in news %}
+                    <h3>{{n.title}}</h3>
+                    <p>{{n.body|truncatewords:20}}</p>
+                <a href="{% url 'edit' n.id %}" class="btn btn-success">Edit</a>
+                <a href="{% url 'del' n.id %}" class="btn btn-danger">Delete</a>
+                <hr/>
+                {% endfor %}
+            </div>
+       </div>
+  </div>
+{% endblock %}
+
+{% block 'title' %} All News {% endblock %}
