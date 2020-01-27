@@ -3,6 +3,7 @@ from blog.models import Blog
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
+from django.contrib import messages
 
 def signout(request):
     logout(request)
@@ -28,10 +29,16 @@ def signup(request):
         if pass1==pass2:
             u = User(username=u)
             u.set_password(pass1)
-            u.save()
-            return redirect('login')
+            try:
+                u.save()
+                messages.add_message(request,messages.SUCCESS,"your account is created successfully")
+                return redirect('login')
+            except:
+                messages.add_message(request,messages.ERROR,'user with this username already exist')
+                return redirect('signup')
 
         else:
+            messages.add_message(request,messages.ERROR,"username and password does not match")
             return redirect('signup')
 
 def singnin(request):
@@ -45,6 +52,7 @@ def singnin(request):
             login(request,user)
             return redirect('dashboard')
         else:
+            messages.add_message(request,messages.ERROR,'username or password does not match')
             return redirect('login')
 
 
